@@ -1,0 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+    --background: #090b14;
+    --panel: #121626;
+    --panel-light: #191f34;
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --text: #f4f4f8;
+    --muted: #929ab3;
+    --border: #2b324a;
+    --red: #f05265;
+    --blue: #38bdf8;
+    --green: #4ade80;
+    --yellow: #fbbf24;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse at top, #19152f 0%, transparent 55%),
+        var(--background);
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+    transform: none;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px 20px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    animation: appear 0.4s ease;
+}
+
+.menu h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(3rem, 10vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -3px;
+    text-shadow: 0 0 35px #8b5cf655;
+}
+
+h1 span,
+h2 span {
+    color: var(--purple-light);
+}
+
+.subtitle {
+    color: var(--muted);
+    margin-top: 12px;
+    margin-bottom: 42px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.button {
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.primary {
+    background: var(--purple);
+    border: 1px solid var(--purple);
+    color: white;
+    box-shadow: 0 5px 25px #8b5cf633;
+}
+
+.primary:hover:not(:disabled) {
+    background: #9b73fa;
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: #171b2b;
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.secondary:hover:not(:disabled) {
+    background: #252b40;
+    border-color: var(--purple);
+}
+
+.game {
+    width: 100%;
+    max-width: 920px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    animation: appear 0.35s ease;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.game-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+}
+
+.game-header p {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.game-header .button {
+    font-size: 0.8rem;
+}
+
+.battle-arena,
+.command-panel,
+.program-panel,
+.log-panel {
+    background: #111524ef;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.battle-arena {
+    background:
+        radial-gradient(ellipse at center, #292044 0%, #15192a 65%, #101321 100%);
+}
+
+.arena-label {
+    color: var(--muted);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.fighters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 22px;
+    padding-top: 20px;
+}
+
+.fighter {
+    text-align: center;
+    min-width: 0;
+}
+
+.fighter-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.player .fighter-name {
+    color: var(--blue);
+}
+
+.enemy .fighter-name {
+    color: var(--red);
+}
+
+.character-frame {
+    height: 115px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-frame img {
+    display: block;
+    max-width: 100%;
+    max-height: 115px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 8px 14px #0008);
+}
+
+.fighter-status {
+    display: inline-block;
+    margin: 7px 0 14px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #ffffff0a;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+
+.battle-versus {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    color: #b8a4ff;
+    font-size: 1.1rem;
+    text-shadow: 0 0 20px #8b5cf688;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.stat-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+.stat-bar {
+    width: 100%;
+    height: 9px;
+    background: #080a12;
+    border: 1px solid #ffffff0d;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.stat-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    transition: width 0.25s ease;
+}
+
+.hp-fill {
+    background: linear-gradient(90deg, #dc354f, #fb7185);
+}
+
+.stamina-fill {
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+}
+
+.section-heading,
+.program-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-heading h3,
+.program-heading h3,
+.log-panel h3 {
+    font-size: 0.95rem;
+}
+
+.section-heading>span,
+.program-heading>span {
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+
+.command-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.command-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    min-height: 90px;
+    padding: 10px 5px;
+    border-radius: 9px;
+    background: var(--panel-light);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-bottom-width: 3px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.command-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+.command-button small {
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.command-icon {
+    font-size: 1.2rem;
+}
+
+.attack {
+    border-bottom-color: var(--red);
+}
+
+.strong-attack {
+    border-bottom-color: #fb923c;
+}
+
+.defense {
+    border-bottom-color: var(--blue);
+}
+
+.dodge {
+    border-bottom-color: var(--purple-light);
+}
+
+.sleep {
+    border-bottom-color: var(--green);
+}
+
+.program-panel {
+    background: #0b0e19eF;
+}
+
+.program-heading {
+    margin-bottom: 14px;
+}
+
+.program-sequence {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+}
+
+.empty-sequence {
+    align-self: center;
+    color: #737b94;
+    font-size: 0.85rem;
+}
+
+.sequence-block {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--panel-light);
+    font-family: monospace;
+    font-size: 0.85rem;
+    animation: appear 0.2s ease;
+}
+
+.sequence-block.executed {
+    opacity: 0.45;
+}
+
+.sequence-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23px;
+    height: 23px;
+    border-radius: 5px;
+    background: var(--purple);
+    color: white;
+    font-weight: 700;
+}
+
+.program-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.game-message {
+    margin-top: 14px;
+    color: var(--purple-light);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.log-panel {
+    padding: 18px 20px;
+}
+
+.battle-log {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.battle-log p {
+    padding: 7px 10px;
+    border-left: 2px solid var(--border);
+    background: #ffffff04;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 700px) {
+    main {
+        padding: 20px 12px;
+        align-items: flex-start;
+    }
+
+    .game {
+        margin: auto 0;
+    }
+
+    .game-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .game-header p {
+        max-width: 210px;
+        line-height: 1.4;
+    }
+
+    .game-header .button {
+        padding: 9px;
+        font-size: 0.7rem;
+    }
+
+    .battle-arena,
+    .command-panel,
+    .program-panel,
+    .log-panel {
+        padding: 14px;
+    }
+
+    .fighters {
+        gap: 9px;
+    }
+
+    .character-frame {
+        height: 90px;
+    }
+
+    .character-frame img {
+        max-height: 90px;
+    }
+
+    .fighter-name {
+        font-size: 0.65rem;
+    }
+
+    .fighter-status {
+        font-size: 0.65rem;
+    }
+
+    .command-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .command-button {
+        min-height: 82px;
+    }
+
+    .command-button:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+@media (max-width: 380px) {
+    .fighters {
+        gap: 5px;
+    }
+
+    .character-frame {
+        height: 75px;
+    }
+
+    .character-frame img {
+        max-height: 75px;
+    }
+
+    .battle-versus {
+        font-size: 0.75rem;
+    }
+
+    .program-actions .button {
+        flex: 1;
+        padding: 10px 8px;
+        font-size: 0.8rem;
+    }
+}

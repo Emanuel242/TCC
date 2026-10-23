@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeHero</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <section id="menu" class="menu">
+            <h1>Code<span>Hero</span></h1>
+            <p class="subtitle">Programe. Lute. Evolua.</p>
+
+            <div class="menu-buttons">
+                <button id="startButton" class="button primary">Iniciar</button>
+                <button id="settingsButton" class="button secondary">Configurações</button>
+                <button id="exitButton" class="button secondary">Sair</button>
+            </div>
+        </section>
+
+        <section id="game" class="game hidden">
+            <header class="game-header">
+                <div>
+                    <h2>Code<span>Hero</span></h2>
+                    <p>Programe suas ações e vença o combate.</p>
+                </div>
+                <button id="backButton" class="button secondary">Voltar ao menu</button>
+            </header>
+
+            <div class="battle-arena">
+                <div class="arena-label">ARENA DE COMBATE</div>
+
+                <div class="fighters">
+                    <div class="fighter player">
+                        <div class="fighter-name">PLAYER</div>
+                        <div class="character-frame">
+                            <img src="assets/player.png" alt="Personagem do jogador">
+                        </div>
+                        <div class="fighter-status">Herói</div>
+
+                        <div class="stats">
+                            <div class="stat-label">
+                                <span>VIDA</span>
+                                <span id="playerHpText">10/10</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="playerHpBar" class="stat-fill hp-fill"></div>
+                            </div>
+
+                            <div class="stat-label">
+                                <span>STAMINA</span>
+                                <span id="playerStaminaText">4/4</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="playerStaminaBar" class="stat-fill stamina-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="battle-versus">VS</div>
+
+                    <div class="fighter enemy">
+                        <div class="fighter-name">ENEMY</div>
+                        <div class="character-frame">
+                            <img src="assets/enemy.png" alt="Personagem inimigo">
+                        </div>
+                        <div class="fighter-status">Oponente</div>
+
+                        <div class="stats">
+                            <div class="stat-label">
+                                <span>VIDA</span>
+                                <span id="enemyHpText">10/10</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="enemyHpBar" class="stat-fill hp-fill"></div>
+                            </div>
+
+                            <div class="stat-label">
+                                <span>STAMINA</span>
+                                <span id="enemyStaminaText">4/4</span>
+                            </div>
+                            <div class="stat-bar">
+                                <div id="enemyStaminaBar" class="stat-fill stamina-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="command-panel">
+                <div class="section-heading">
+                    <h3>Blocos de código</h3>
+                    <span>Escolha até 3 comandos</span>
+                </div>
+
+                <div class="command-buttons">
+                    <button class="command-button attack" data-command="atk">
+                        <span class="command-icon">⚔</span>
+                        <span>codigo atk</span>
+                        <small>1 dano · 1 stamina</small>
+                    </button>
+
+                    <button class="command-button strong-attack" data-command="strong">
+                        <span class="command-icon">✹</span>
+                        <span>codigo atk_forte</span>
+                        <small>3 dano · 2 stamina</small>
+                    </button>
+
+                    <button class="command-button defense" data-command="def">
+                        <span class="command-icon">🛡</span>
+                        <span>codigo def</span>
+                        <small>Reduz dano · 1 stamina</small>
+                    </button>
+
+                    <button class="command-button dodge" data-command="dodge">
+                        <span class="command-icon">💨</span>
+                        <span>codigo esquiva</span>
+                        <small>50% de chance · 1 stamina</small>
+                    </button>
+
+                    <button class="command-button sleep" data-command="sleep">
+                        <span class="command-icon">☾</span>
+                        <span>codigo sleep</span>
+                        <small>Recupera 2 stamina</small>
+                    </button>
+                </div>
+            </div>
+
+            <div class="program-panel">
+                <div class="program-heading">
+                    <h3>Seu programa</h3>
+                    <span id="commandCounter">0/3 comandos</span>
+                </div>
+
+                <div id="programSequence" class="program-sequence">
+                    <p class="empty-sequence">Escolha seus comandos acima.</p>
+                </div>
+
+                <div class="program-actions">
+                    <button id="executeButton" class="button primary" disabled>
+                        ▶ Start
+                    </button>
+                    <button id="clearButton" class="button secondary">
+                        Limpar sequência
+                    </button>
+                </div>
+
+                <p id="gameMessage" class="game-message" aria-live="polite">
+                    Monte sua sequência de combate.
+                </p>
+            </div>
+
+            <div class="log-panel">
+                <h3>Histórico de combate</h3>
+                <div id="battleLog" class="battle-log">
+                    <p>O combate ainda não começou.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
